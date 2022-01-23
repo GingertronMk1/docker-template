@@ -1,0 +1,40 @@
+version: '3.7'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./etc/dockerfiles/app.dockerfile
+    working_dir: /src
+    command: ./etc/entrypoints/app.sh
+    volumes:
+      - .:/src:delegated
+      - /src/cache
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.tits.rule=Host(`tits.ginge.localhost`)"
+    networks:
+      - internal
+      - local-mysql
+      - traefik
+    ports:
+      - "8001:8000"
+
+  node:
+    build:
+      context: .
+      dockerfile: ./etc/dockerfiles/node.dockerfile
+    working_dir: /src
+    command: ./etc/entrypoints/node.sh
+    volumes:
+      - .:/src:delegated
+      - /src/cache
+    networks:
+      - internal
+
+networks:
+  internal:
+  traefik:
+    external: true
+  local-mysql:
+    external: true
