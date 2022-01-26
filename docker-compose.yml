@@ -12,7 +12,7 @@ services:
       - /src/cache
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.tits.rule=Host(`tits.ginge.localhost`)"
+      - "traefik.http.routers.<APPNAME>.rule=Host(`<APPNAME>.ginge.localhost`)"
     networks:
       - internal
       - local-mysql
