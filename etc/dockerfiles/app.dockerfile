@@ -17,5 +17,6 @@ RUN composer install && mv /src/vendor /src/cache
 RUN echo -e '#!/bin/bash\nphp /src/artisan "$@"' > /usr/bin/a && \
     chmod +x /usr/bin/a
 
-RUN chmod +x /src/etc/entrypoints/app.sh
+RUN cp /src/etc/entrypoints/app.sh /usr/bin/entrypoint && \
+    chmod +x /usr/bin/entrypoint
 

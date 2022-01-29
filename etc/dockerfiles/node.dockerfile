@@ -10,4 +10,5 @@ RUN mkdir -p /src/cache
 
 RUN npm install && mv /src/node_modules /src/cache
 
-RUN chmod +x /src/etc/entrypoints/node.sh
+RUN cp /src/etc/entrypoints/node.sh /usr/bin/entrypoint && \
+    chmod +x /usr/bin/entrypoint

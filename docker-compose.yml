@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: ./etc/dockerfiles/app.dockerfile
     working_dir: /src
-    command: ./etc/entrypoints/app.sh
+    entrypoint: entrypoint
     volumes:
       - .:/src:delegated
       - /src/cache
@@ -25,7 +25,7 @@ services:
       context: .
       dockerfile: ./etc/dockerfiles/node.dockerfile
     working_dir: /src
-    command: ./etc/entrypoints/node.sh
+    entrypoint: entrypoint
     volumes:
       - .:/src:delegated
       - /src/cache
